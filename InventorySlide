@@ -1,0 +1,38 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class HoverSlideObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
+    [SerializeField] private Vector3 targetPosition;
+    [SerializeField] private float slideSpeed = 2.0f;
+
+    private Vector3 initialPosition;
+    private bool shouldSlideIn;
+
+    private void Start()
+    {
+        initialPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        SlideObject();
+    }
+
+    private void SlideObject()
+    {
+        Vector3 target = shouldSlideIn ? targetPosition : initialPosition;
+        transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * slideSpeed);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        shouldSlideIn = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        shouldSlideIn = false;
+    }
+}
