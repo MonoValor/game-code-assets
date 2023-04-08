@@ -1,0 +1,36 @@
+using UnityEngine;
+
+public class MouseHoverPlaneSwitcher : MonoBehaviour
+{
+    [SerializeField] private GameObject[] planes;
+    private int currentPlaneIndex = 0;
+
+    private void Start()
+    {
+        // Disable all planes except the first one
+        for (int i = 1; i < planes.Length; i++)
+        {
+            planes[i].SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MouseCursor"))
+        {
+            SwitchPlane();
+        }
+    }
+
+    private void SwitchPlane()
+    {
+        // Disable the current plane
+        planes[currentPlaneIndex].SetActive(false);
+
+        // Increment the index, wrapping around if necessary
+        currentPlaneIndex = (currentPlaneIndex + 1) % planes.Length;
+
+        // Enable the next plane
+        planes[currentPlaneIndex].SetActive(true);
+    }
+}
