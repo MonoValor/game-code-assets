@@ -1,7 +1,7 @@
 NOTE: READ THE CODE AND CHANGE THE OBJECT NAMES TO THE ONES BEING USED IN THE GAME TO AVOID COMPLICATIONS 
 
 
-1. Create a new C# script called "HoverSlideObject" and attach it to the object you want to slide into the scene.
+1. Create a new C# script called "HoverSlideObject" or (anything you feels is better) and attach it to the object you want to slide into the scene.
 2. Copy the code
 
 
