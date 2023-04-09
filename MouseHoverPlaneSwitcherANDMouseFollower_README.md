@@ -1,6 +1,7 @@
 To have the ability to switch between different planes when the mouse hovers over a specific area and switch
 back to the first plane when the mouse hovers over the same area again, I thought using a trigger collider and a script would 
 be the best bet. 
+
 -This is the for Plane switcher
 1. Create a new C# script called "MouseHoverPlaneSwitcher" and attach it to an empty GameObject in your scene.
 2. add the code
