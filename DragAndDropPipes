@@ -1,0 +1,53 @@
+using UnityEngine;
+
+public class DragAndDropObject : MonoBehaviour
+{
+    [SerializeField] private float gridSize = 1.0f;
+    private Camera mainCamera;
+    private bool isDragging;
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
+
+    private void Update()
+    {
+        if (isDragging)
+        {
+            DragObject();
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        isDragging = true;
+    }
+
+    private void OnMouseUp()
+    {
+        isDragging = false;
+        SnapToGrid();
+    }
+
+    private void DragObject()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100.0f, ~LayerMask.NameToLayer("Ignore Raycast")))
+        {
+            Vector3 newPosition = hit.point;
+            newPosition.y = transform.position.y; // Keep the object at the same height
+            transform.position = newPosition;
+        }
+    }
+
+    private void SnapToGrid()
+    {
+        Vector3 position = transform.position;
+        position.x = Mathf.Round(position.x / gridSize) * gridSize;
+        position.z = Mathf.Round(position.z / gridSize) * gridSize;
+        transform.position = position;
+    }
+}
