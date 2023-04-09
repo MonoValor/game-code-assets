@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ClickRotation : MonoBehaviour
+public class ClickRotate90 : MonoBehaviour
 {
     [SerializeField] private Vector3 rotationAxis = Vector3.up;
     [SerializeField] private float rotationAngle = 90.0f;
