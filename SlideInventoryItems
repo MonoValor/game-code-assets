@@ -1,0 +1,45 @@
+using UnityEngine;
+
+public class FollowObject : MonoBehaviour
+{
+    [SerializeField] private GameObject targetObject;
+    private Camera mainCamera;
+    private bool followEnabled;
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+        followEnabled = true;
+    }
+
+    private void Update()
+    {
+        if (followEnabled)
+        {
+            FollowTarget();
+        }
+        CheckForClick();
+    }
+
+    private void FollowTarget()
+    {
+        transform.position = targetObject.transform.position;
+    }
+
+    private void CheckForClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject == gameObject)
+                {
+                    followEnabled = false;
+                }
+            }
+        }
+    }
+}
