@@ -1,0 +1,21 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class LevelButtonController : MonoBehaviour
+{
+    [SerializeField] private Button levelButton;
+    [SerializeField] private int cutsceneSceneIndex;
+    [SerializeField] private int levelSceneIndex;
+
+    private void Start()
+    {
+        levelButton.onClick.AddListener(LoadCutscene);
+    }
+
+    public void LoadCutscene()
+    {
+        PlayerPrefs.SetInt("NextLevel", levelSceneIndex);
+        SceneManager.LoadScene(cutsceneSceneIndex);
+    }
+}
