@@ -1,0 +1,22 @@
+using UnityEngine;
+
+public class ParallaxScrolling : MonoBehaviour
+{
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float parallaxSpeed = 0.5f;
+    private Vector3 previousCameraPosition;
+
+    private void Start()
+    {
+        previousCameraPosition = cameraTransform.position;
+    }
+
+    private void Update()
+    {
+        Vector3 deltaCameraPosition = cameraTransform.position - previousCameraPosition;
+        Vector3 backgroundPositionChange = deltaCameraPosition * parallaxSpeed;
+        backgroundPositionChange.y = 0; // Keep the background at the same height
+        transform.position += backgroundPositionChange;
+        previousCameraPosition = cameraTransform.position;
+    }
+}
