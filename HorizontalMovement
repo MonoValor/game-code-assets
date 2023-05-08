@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class HorizontalMovement : MonoBehaviour
+{
+    [SerializeField] private float movementSpeed = 5.0f;
+
+    private void Update()
+    {
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        Vector3 movement = new Vector3(horizontalInput, 0, 0) * movementSpeed * Time.deltaTime;
+        transform.position += movement;
+    }
+}
