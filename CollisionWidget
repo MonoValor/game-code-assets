@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public GameObject gameWidget; // Reference to the UI panel/widget you've created
+
+    void Start()
+    {
+        // Ensures that the game widget is hidden on game start
+        gameWidget.SetActive(false);
+    }
+
+    // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the object we collided with is tagged as 'Enemy'
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // If so, activate the game widget
+            gameWidget.SetActive(true);
+        }
+    }
+}
