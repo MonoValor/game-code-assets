@@ -14,7 +14,7 @@ GameObject tagged as "Enemy", the game widget will be made active, making it pop
 4. Remember, for the collision to work, both the player and the enemy need to have Collider components and at least one of them needs to 
 have a Rigidbody component. Also, 
 
-I you forget to tag your enemy objects with the "Enemy" tag or something simmilar I'll find you.
+If you forget to tag your enemy objects with the "Enemy" tag or something simmilar I'll find you.
 
 You can customize your UI Panel as you want, adding buttons, texts, images, etc. You can also add more complex behaviors, 
 like disabling player control when the widget pops up, or adding a button on the widget to close it.
