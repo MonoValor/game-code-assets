@@ -1,0 +1,12 @@
+using UnityEngine;
+
+public class PuzzleController : MonoBehaviour
+{
+    public Animator gameWidgetAnimator; // Reference to the animator of your widget
+
+    public void CompletePuzzle()
+    {
+        // Play the slide-out animation
+        gameWidgetAnimator.Play("SlideOut"); // Replace with the name of your animation state
+    }
+}
