@@ -11,4 +11,8 @@ will automatically create keyframes for the start and end positions.
 4. You should see the animation in the Animator window now (Window -> Animation -> Animator), with an "Any State" 
 transition to your new SlideIn state.
 
+*Don't forget to replace "HiddenState" and "SlideIn" with the names of your own animation states in the Animator window, and to assign the gameWidgetAnimator variable in the Inspector.*
+
+TO Hide the Widget go to WidgetComplete
+
 IF YOU NEED HELP ASK ME
