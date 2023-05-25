@@ -1,3 +1,5 @@
+*NOTE USE THIS WHILE ALSO USING WIDGETANIMATION AT THE SAME TIME TO AVOID CONFUSION LATER*
+
 1. Make a new UI Panel in your scene (right click in hierarchy -> UI -> Panel), which will serve as the pop-up widget. 
 Set it as inactive from the Inspector.
 
