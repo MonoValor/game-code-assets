@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public Animator gameWidgetAnimator; // Reference to the animator of your widget
+
+    void Start()
+    {
+        // Ensure the widget is hidden on start
+        gameWidgetAnimator.Play("HiddenState"); // Replace with the name of your hidden state
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Play the slide-in animation
+            gameWidgetAnimator.Play("SlideIn"); // Replace with the name of your animation state
+        }
+    }
+}
