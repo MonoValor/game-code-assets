@@ -1,0 +1,13 @@
+using UnityEngine;
+
+public class Circle : MonoBehaviour
+{
+    public void OnMouseDown()
+    {
+        // Notify the game controller
+        FindObjectOfType<MiniGameController>().OnCircleClicked();
+
+        // Destroy the circle
+        Destroy(gameObject);
+    }
+}
