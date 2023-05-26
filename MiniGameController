@@ -1,0 +1,42 @@
+using System.Collections;
+using UnityEngine;
+
+public class MiniGameController : MonoBehaviour
+{
+    public GameObject circlePrefab; // Drag your Circle prefab here in the Inspector
+    public int circlesToWin = 20; // Number of circles to click to win the game
+    public Puzzle puzzle; // Assume that Puzzle is a script attached to your puzzle GameObject
+    public PuzzleController puzzleController; // Assume that PuzzleController is a script that contains your CompletePuzzle() function
+
+    private int circlesClicked = 0;
+
+    private void Start()
+    {
+        StartCoroutine(SpawnCircles());
+    }
+
+    private IEnumerator SpawnCircles()
+    {
+        while (circlesClicked < circlesToWin)
+        {
+            Vector3 randomPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+            GameObject circle = Instantiate(circlePrefab, randomPos, Quaternion.identity, transform);
+            
+            yield return new WaitForSeconds(1f); // Wait for 1 second before spawning the next circle
+        }
+    }
+
+    public void OnCircleClicked()
+    {
+        circlesClicked++;
+        if (circlesClicked >= circlesToWin)
+        {
+            // Check if the puzzle is solved
+            if (puzzle.IsSolved())
+            {
+                // If the puzzle is solved, complete the puzzle
+                puzzleController.CompletePuzzle();
+            }
+        }
+    }
+}
