@@ -1,0 +1,76 @@
+using UnityEngine;
+using System.Collections;
+
+public class MemoryGameController : MonoBehaviour
+{
+    public GameObject cardPrefab; // Your Card prefab
+    public int rows = 4;
+    public int columns = 10;
+    public float timeLimit = 60.0f; // Time limit of 1 minute
+    private float timer = 0.0f;
+    private Card firstCard;
+    private Card secondCard;
+    
+    void Start()
+    {
+        // Generate cards
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                // Instantiate Card prefab and position them
+                GameObject cardObj = Instantiate(cardPrefab, new Vector3(i * 2, j * 2, 0), Quaternion.identity);
+                Card card = cardObj.GetComponent<Card>();
+                card.id = (i * columns + j) % (rows * columns / 2); // Assign pairs of cards the same id
+            }
+        }
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > timeLimit)
+        {
+            // End game if time limit is exceeded
+            EndGame();
+        }
+    }
+
+    public void CardClicked(Card card)
+    {
+        if (firstCard == null)
+        {
+            firstCard = card;
+        }
+        else if (secondCard == null)
+        {
+            secondCard = card;
+            StartCoroutine(CheckMatch());
+        }
+    }
+
+    IEnumerator CheckMatch()
+    {
+        yield return new WaitForSeconds(1);
+        if (firstCard.id == secondCard.id)
+        {
+            // If cards match, disable them
+            firstCard.gameObject.SetActive(false);
+            secondCard.gameObject.SetActive(false);
+        }
+        else
+        {
+            // If they don't match, flip them back
+            firstCard.Flip();
+            secondCard.Flip();
+        }
+        firstCard = null;
+        secondCard = null;
+    }
+
+    void EndGame()
+    {
+        // Here you can implement what happens when the game ends
+        Debug.Log("Game Over");
+    }
+}
