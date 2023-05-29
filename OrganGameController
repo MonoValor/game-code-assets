@@ -1,0 +1,45 @@
+using System.Linq;
+using UnityEngine;
+
+public class GameController : MonoBehaviour
+{
+    public GameObject blockPrefab; // Our block prefab
+    public int blockCount = 10; // The number of blocks to generate
+
+    private GameObject[] blocks; // The blocks in our game
+
+    void Start()
+    {
+        blocks = new GameObject[blockCount];
+
+        // Instantiate the blocks
+        for (int i = 0; i < blockCount; i++)
+        {
+            Vector3 position = new Vector3(i * 1.2f, 0, 0); // Adjust the 1.2f value to add space between blocks
+            blocks[i] = Instantiate(blockPrefab, position, Quaternion.identity);
+        }
+    }
+
+    void Update()
+    {
+        // If the player presses space, check if the blocks are sorted correctly
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Sort blocks by their x position
+            blocks = blocks.OrderBy(block => block.transform.position.x).ToArray();
+
+            // Check if the blocks are sorted correctly
+            int blueCount = blocks.Count(block => block.GetComponent<SpriteRenderer>().color == blocks[0].GetComponent<Block>().colorBlue);
+            int redCount = blockCount - blueCount;
+
+            if (blueCount == redCount)
+            {
+                Debug.Log("You win!");
+            }
+            else
+            {
+                Debug.Log("Blocks are not sorted correctly. Try again!");
+            }
+        }
+    }
+}
