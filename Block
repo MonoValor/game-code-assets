@@ -1,0 +1,29 @@
+using UnityEngine;
+
+public class Block : MonoBehaviour
+{
+    private SpriteRenderer spriteRenderer;
+
+    // Colors for our blocks
+    public Color colorBlue;
+    public Color colorRed;
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = colorBlue; // Default color is blue
+    }
+
+    void OnMouseDown()
+    {
+        // If the block is clicked, change its color
+        if (spriteRenderer.color == colorBlue)
+        {
+            spriteRenderer.color = colorRed;
+        }
+        else
+        {
+            spriteRenderer.color = colorBlue;
+        }
+    }
+}
