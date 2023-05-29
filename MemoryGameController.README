@@ -1,0 +1,9 @@
+1. create a new GameObject in the Unity Editor 
+2. add a new script component to it named Card. You can then create a prefab out of 
+this GameObject by dragging it from the hierarchy window into the project window.
+3. This script assumes that you have a MemoryGameController script in your scene
+4. For this script to work, you need to assign the front and back sprites of the card in the Inspector in Unity Editor. 
+The Flip() method switches between these two sprites.
+5. Remember to save the GameObject with the Card script as a prefab so you can instantiate it dynamically in your game.
+
+This is greately needed for the MemoryFlipMiniGame to work
