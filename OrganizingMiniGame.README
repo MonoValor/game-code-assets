@@ -1,0 +1,12 @@
+1. In the Unity Editor, you can now create a 2D Sprite, attach the Block script to it, set the 
+colorBlue and colorRed values in the Inspector, and then save this as a block prefab.
+2. reate a OrganGameController script that will generate blocks and check if they are sorted 
+correctly. 
+3. In this example, the game checks if the blocks are sorted correctly whenever the player presses 
+the Space key. The game considers the blocks sorted correctly when the number of blue blocks equals 
+the number of red blocks. Note that this is just a basic example, and you may want to change the 
+winning condition or other gameplay mechanics to suit your specific needs.
+4. In the Unity Editor, create an empty GameObject and attach the OrganGameController script to it. Don't 
+forget to link the block prefab to the blockPrefab field in the script. 
+5. Now you should be able to start the game, click blocks to change their color, and press Space 
+to check if they are sorted correctly.
