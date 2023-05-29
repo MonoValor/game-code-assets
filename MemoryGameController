@@ -1,0 +1,40 @@
+using UnityEngine;
+
+public class Card : MonoBehaviour
+{
+    public int id; // The ID of the card
+
+    private bool isFlipped = false; // To track whether the card is flipped or not
+    private SpriteRenderer spriteRenderer; // The SpriteRenderer of the card
+    public Sprite frontSprite; // The front image of the card
+    public Sprite backSprite; // The back image of the card
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    // The method to flip the card
+    public void Flip()
+    {
+        if (isFlipped)
+        {
+            spriteRenderer.sprite = backSprite; // Show the back of the card
+            isFlipped = false;
+        }
+        else
+        {
+            spriteRenderer.sprite = frontSprite; // Show the front of the card
+            isFlipped = true;
+        }
+    }
+
+    // When the card is clicked
+    void OnMouseDown()
+    {
+        Flip();
+
+        // Notify the game controller that this card was clicked
+        FindObjectOfType<MemoryGameController>().CardClicked(this);
+    }
+}
